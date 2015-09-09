@@ -1,12 +1,12 @@
 console.log('This would be the main JS file.');
 
-var width = 960,
+var width = 500,
     height = 500;
 
 var color = d3.scale.category20();
 
 var force = d3.layout.force()
-    .linkDistance(10)
+    .linkDistance(6)
     .linkStrength(2)
     .size([width, height]);
 
@@ -14,10 +14,8 @@ var svg = d3.select("#test_here").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-console.log('loading ' + "/braineac2_d3_test/data/les_mis.json");
 d3.json("/braineac2_d3_test/data/les_mis.json", function(error, graph) {
   if (error) throw error;
-console.log('loaded ok');
 
   var nodes = graph.nodes.slice(),
       links = [],
@@ -37,17 +35,20 @@ console.log('loaded ok');
       .links(links)
       .start();
 
-  var link = svg.selectAll(".link")
+    var link = svg.selectAll(".link")
       .data(bilinks)
-    .enter().append("path")
-      .attr("class", "link");
+      .enter().append("path")
+      .style("stroke", "red")    // set the line colour
+      .style("fill", "none");    // set the fill colour 
+      ;
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
-    .enter().append("circle")
+      .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 5)
+      .attr("r", 10)
       .style("fill", function(d) { return color(d.group); })
+      .style("stroke", "white")    // set the line colour
       .call(force.drag);
 
   node.append("title")
