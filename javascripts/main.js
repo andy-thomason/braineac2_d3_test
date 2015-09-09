@@ -14,7 +14,7 @@ var svg = d3.select("#test_here").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("/data/les_mis.json", function(error, graph) {
+d3.json("/braineac2_d3_test/data/les_mis.json", function(error, graph) {
   if (error) throw error;
 console.log('loaded ok');
 
