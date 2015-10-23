@@ -1,2 +1,2 @@
 cd ..
-c:\python27\python -m SimpleHTTPServer
+"C:\Program Files\Python27\python" -m SimpleHTTPServer
